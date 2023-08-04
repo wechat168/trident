@@ -25,6 +25,13 @@ subprojects {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.java
+            }
+        }
+    }
 
     dependencies {
         testImplementation "org.junit.jupiter:junit-jupiter:$junitJupiterVersion"
@@ -35,6 +42,7 @@ subprojects {
         testLogging {
             events 'passed', 'skipped', 'failed'
         }
+        exclude "org/tron/*"
     }
 
     task sourcesJar(type: Jar, dependsOn: classes) {
